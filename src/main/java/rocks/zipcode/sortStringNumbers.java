@@ -14,23 +14,44 @@ public class sortStringNumbers {
     //Given: an array of numbers as strings, i.e., {"1", "5", "15", "9", "4"}
     //Task: sort the numbers
     //Restriction: the numbers must stay strings - no converting to integers
-    //EdgeCases: Decimals, Negatives, Large number with comas,
+    //EdgeCases: Decimals, Negatives, Large number with comas, leading zero numbers, spelling out numbers, fractions
 
     public String[] sortNumbers(String[] input) {
 
         String[] sortedArray = input;
 
-        Arrays.sort(input, new Comparator<String>() {
-            public int compare (String s1, String s2) {
 
-                if (s1.length() == s2.length()) {
+        //Refactoring with a bubble sort
+        {
+            int n = input.length;
+            for (int i = 0; i < n - 1; i++)
+                //Number of times this runs
 
-                    return (s1).compareTo((s2));
-                } else {
-                    return Integer.valueOf(s1.length()).compareTo(Integer.valueOf(s2.length()));
-                }
-            }
-        });
+                for (int j = 0; j < n - i - 1; j++)
+                //Goes through entire array once
+
+                    if (compare(input[j], input[j + 1]) > 0) {
+                    //If first number greater than second number, swap them
+
+                        String temp = input[j];
+                        input[j] = input[j + 1];
+                        input[j + 1] = temp;
+                    }
+        }
+
+
+//
+//        Arrays.sort(input, new Comparator<String>() {
+//            public int compare (String s1, String s2) {
+//
+//                if (s1.length() == s2.length()) {
+//
+//                    return (s1).compareTo((s2));
+//                } else {
+//                    return Integer.valueOf(s1.length()).compareTo(Integer.valueOf(s2.length()));
+//                }
+//            }
+//        });
 
         return sortedArray;
     }
